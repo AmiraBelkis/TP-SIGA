@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="header">
+            <lable>Methode : </lable>
+            <select id="method">
+                <option value="1">Pythagore</option>
+                <option value="2">sinus</option>
+                <option value="3">Haversine</option>
+            </select><br>
+            <label>Type :</label>
+            <input type="radio" name="type" id="dd" checked onchange="DD_DMS(1)">DD
+            <input type="radio" name="type" id="dms" onchange="DD_DMS(2)">DMS
+            <button onclick="calculat()">Resultat</button>
+        </div>
+        <div class="location">
+            A:<br>
+            <table>
+                <tr>
+                    <td> <label>Longitude</label></td>
+                    <td id="LA"> <input type="text" placeholder="dd" id="lamdaA"> </td>
+                    <td id="LA2" style="display: none;" class="dms">
+                        <input type="text" placeholder="°" id="lamdaA_D">
+                        <input type="text" placeholder='"' id="lamdaA_M">
+                        <input type="text" placeholder="'" id="lamdaA_S">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label>Latitude</label></td>
+                    <td id="GA"> <input type="text" placeholder="dd" id="gammaA"></td>
+                    <td id="GA2" style="display: none;" class="dms">
+                        <input type="text" placeholder="°" id="gammaA_D">
+                        <input type="text" placeholder='"' id="gammaA_M">
+                        <input type="text" placeholder='"' id="gammaA_S">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="location">
+            B:<br>
+            <table>
+                <tr>
+                    <td> <label>Longitude</label></td>
+                    <td id="LB"> <input type="text" placeholder="dd" id="lamdaB"> </td>
+                    <td id="LB2" style="display: none;" class="dms">
+                        <input type="text" placeholder="°" id="lamdaB_D">
+                        <input type="text" placeholder='"' id="lamdaB_M">
+                        <input type="text" placeholder='"' id="lamdaB_S">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label>Latitude</label></td>
+                    <td id="GB"> <input type="text" placeholder="dd" id="gammaB"></td>
+                    <td id="GB2" style="display: none;" class="dms">
+                        <input type="text" placeholder="°" id="gammaB_D">
+                        <input type="text" placeholder='"' id="gammaB_M">
+                        <input type="text" placeholder='"' id="gammaB_S">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="result">
+            <hr>
+            <label>Distance</label>
+            <input type="text" disabled value="/" id="D"><br>
+            <label>Direction</label>
+            <input type="text" disabled value="/" id="dir">
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
