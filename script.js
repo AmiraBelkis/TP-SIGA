@@ -45,22 +45,20 @@ function calculat() {
             y = gammaB - gammaA;
             let z = Math.sqrt(x * x + y * y);
             d = z * k;
-            distance.value = Math.round(d * 10000) / 10000 + " Km";
+            distance.value = Math.round(d * 100000) / 100000 + " Km";
             break;
         case ('2'): //sinus "Works"
-            console.log("Sinus");
             const RT = 6378.138;
             d = RT * Math.acos(Math.sin(gammaA) * Math.sin(gammaB) + Math.cos(gammaA) * Math.cos(gammaB) * Math.cos(lamdaB - lamdaA));
-            distance.value = Math.round(d * 10000) / 10000 + " Km";
+            distance.value = Math.round(d * 100000) / 100000 + " Km";
             break;
         case ('3'): //Haversine "Works"
-            console.log("Haversine");
             const k2 = 6378.138;
             x = Math.sin((gammaB - gammaA) / 2) * Math.sin((gammaB - gammaA) / 2);
             x += Math.cos(gammaA) * Math.cos(gammaB) * Math.sin((lamdaB - lamdaA) / 2) * Math.sin((lamdaB - lamdaA) / 2);
             y = 2 * Math.atan(Math.sqrt(x) / Math.sqrt(1 - x));
             d = k2 * y;
-            distance.value = Math.round(d * 10000) / 10000 + " Km";
+            distance.value = Math.round(d * 100000) / 100000 + " Km";
             break;
         default:
             console.log('no where');
