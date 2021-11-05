@@ -13,35 +13,52 @@ const LA = document.getElementById('LA'),
 function calculat() {
     let lamdaA, lamdaB, gammaB, gammaA;
     if (document.getElementById('dd').checked) {
-        gammaA = document.getElementById('gammaA').value * 3.14 / 180
-        gammaB = document.getElementById('gammaB').value * 3.14 / 180
-        lamdaA = document.getElementById('lamdaA').value * 3.14 / 180
-        lamdaB = document.getElementById('lamdaB').value * 3.14 / 180
+        gammaA = document.getElementById('gammaA').value * Math.PI / 180
+        gammaB = document.getElementById('gammaB').value * Math.PI / 180
+        lamdaA = document.getElementById('lamdaA').value * Math.PI / 180
+        lamdaB = document.getElementById('lamdaB').value * Math.PI / 180
     } else {
 
-        lamdaA = ConvertDMS_DD(document.getElementById('lamdaA_D').value,
-            document.getElementById('lamdaA_M').value,
-            document.getElementById('lamdaA_S').value) / 10 * 3.14 / 180
-        lamdaB = ConvertDMS_DD(document.getElementById('lamdaB_D').value,
-            document.getElementById('lamdaB_M').value,
-            document.getElementById('lamdaB_S').value) / 10 * 3.14 / 180
-        gammaA = ConvertDMS_DD(document.getElementById('gammaA_D').value,
-            document.getElementById('gammaA_M').value,
-            document.getElementById('gammaA_S').value) / 10 * 3.14 / 180
-        gammaB = ConvertDMS_DD(document.getElementById('gammaB_D').value,
-            document.getElementById('gammaB_M').value,
-            document.getElementById('gammaB_S').value) / 10 * 3.14 / 180
+        lamdaA = ConvertDMS_DD(
+            parseInt(document.getElementById('lamdaA_D').value),
+            parseInt(document.getElementById('lamdaA_M').value),
+            parseInt(document.getElementById('lamdaA_S').value)
+        ) * Math.PI / 180
+        lamdaB = ConvertDMS_DD(
+            parseInt(document.getElementById('lamdaB_D').value),
+            parseInt(document.getElementById('lamdaB_M').value),
+            parseInt(document.getElementById('lamdaB_S').value)
+        ) * Math.PI / 180
+        gammaA = ConvertDMS_DD(
+            parseInt(document.getElementById('gammaA_D').value),
+            parseInt(document.getElementById('gammaA_M').value),
+            parseInt(document.getElementById('gammaA_S').value)
+        ) * Math.PI / 180
+        gammaB = ConvertDMS_DD(
+                parseInt(document.getElementById('gammaB_D').value),
+                parseInt(document.getElementById('gammaB_M').value),
+                parseInt(document.getElementById('gammaB_S').value)
+            ) * Math.PI / 180
+            /*  lamdaB = ConvertDMS_DD(document.getElementById('lamdaB_D').value,
+                  document.getElementById('lamdaB_M').value,
+                  document.getElementById('lamdaB_S').value) * Math.PI / 180
+              gammaA = ConvertDMS_DD(document.getElementById('gammaA_D').value,
+                  document.getElementById('gammaA_M').value,
+                  document.getElementById('gammaA_S').value) * Math.PI / 180
+              gammaB = ConvertDMS_DD(document.getElementById('gammaB_D').value,
+                  document.getElementById('gammaB_M').value,
+                  document.getElementById('gammaB_S').value) / 10 * Math.PI / 180*/
     }
     let d = 0,
         x, y;
     switch (document.getElementById('method').value) {
         case ('1'): //Pythagore "Works"
             const k = 1.852 * 60;
-            lamdaA = lamdaA * 180 / 3.14;
-            lamdaB = lamdaB * 180 / 3.14;
+            lamdaA = lamdaA * 180 / Math.PI;
+            lamdaB = lamdaB * 180 / Math.PI;
             x = (lamdaB - lamdaA) * Math.cos((gammaA + gammaB) / 2);
-            gammaB = gammaB * 180 / 3.14;
-            gammaA = gammaA * 180 / 3.14;
+            gammaB = gammaB * 180 / Math.PI;
+            gammaA = gammaA * 180 / Math.PI;
             y = gammaB - gammaA;
             let z = Math.sqrt(x * x + y * y);
             d = z * k;
@@ -64,7 +81,7 @@ function calculat() {
             console.log('no where');
             break;
     }
-    direction.value = directions(lamdaA * 180 / 3.14, lamdaB * 180 / 3.14, gammaA * 180 / 3.14, gammaB * 180 / 3.14)
+    direction.value = directions(lamdaA * 180 / Math.PI, lamdaB * 180 / Math.PI, gammaA * 180 / Math.PI, gammaB * 180 / Math.PI)
 }
 
 function DD_DMS(n) {
