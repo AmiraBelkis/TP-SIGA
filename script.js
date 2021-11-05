@@ -40,18 +40,21 @@ function calculat() {
             lamdaA = lamdaA * 180 / 3.14;
             lamdaB = lamdaB * 180 / 3.14;
             x = (lamdaB - lamdaA) * Math.cos((gammaA + gammaB) / 2);
+            gammaB = gammaB * 180 / 3.14;
+            gammaA = gammaA * 180 / 3.14;
             y = gammaB - gammaA;
             let z = Math.sqrt(x * x + y * y);
             d = z * k;
             distance.value = Math.round(d * 10000) / 10000 + " Km";
             break;
         case ('2'): //sinus "Works"
+            console.log("Sinus");
             const RT = 6378.138;
             d = RT * Math.acos(Math.sin(gammaA) * Math.sin(gammaB) + Math.cos(gammaA) * Math.cos(gammaB) * Math.cos(lamdaB - lamdaA));
             distance.value = Math.round(d * 10000) / 10000 + " Km";
             break;
         case ('3'): //Haversine "Works"
-
+            console.log("Haversine");
             const k2 = 6378.138;
             x = Math.sin((gammaB - gammaA) / 2) * Math.sin((gammaB - gammaA) / 2);
             x += Math.cos(gammaA) * Math.cos(gammaB) * Math.sin((lamdaB - lamdaA) / 2) * Math.sin((lamdaB - lamdaA) / 2);
@@ -63,6 +66,7 @@ function calculat() {
             console.log('no where');
             break;
     }
+    direction.value = directions(lamdaA * 180 / 3.14, lamdaB * 180 / 3.14, gammaA * 180 / 3.14, gammaB * 180 / 3.14)
 }
 
 function DD_DMS(n) {
@@ -101,4 +105,29 @@ function ConvertDMS_DD(a, b, c) {
         x = f * (-1);
     }
     return x;
+}
+
+function directions(lamdaA, lamdaB, gammaA, gammaB) {
+    const Direction = ["Nord", "Sud", "Est", "Ouest"];
+    // de A vers B
+    let i, j, lamda = lamdaB - lamdaA,
+        gamma = gammaB - gammaA;
+    if (lamda > 0) // vers l'est
+        j = 0;
+    else // vers l'ouest
+        j = 1;
+    if (gamma > 0) // vers nord
+        i = 0;
+    else // vers sud
+        i = 1;
+    // lamda > k1*gamma ==> E/o
+    //  lamda < k2*gamma ==> N/s
+    // else  k1*gamma > lamda > k2*gamma ==> les 2
+    if (360 * Math.abs(lamda) < 180 * 0.8 * Math.abs(gamma)) // vers N/S
+        return Direction[i]
+    else if (360 * Math.abs(lamda) > 180 * 1.2 * Math.abs(gamma)) //vers E/O
+        return Direction[j + 2]
+    else
+        return Direction[i] + "-" + Direction[j + 2]
+
 }
