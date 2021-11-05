@@ -34,22 +34,25 @@ function calculat() {
 
 
     }
-    let d = 0;
+    let d = 0,
+        x, y;
     switch (document.getElementById('method').value) {
-        case ('1'): //Pythagore
+        case ('1'): //Pythagore "Works"
             const k = 1.852 * 60;
-            let x = (lamdaB - lamdaA) * Math.cos((gammaA + gammaB) / 2);
-            let y = gammaB - gammaA;
+            lamdaA = lamdaA * 180 / 3.14;
+            lamdaB = lamdaB * 180 / 3.14;
+            x = (lamdaB - lamdaA) * Math.cos((gammaA + gammaB) / 2);
+            y = gammaB - gammaA;
             let z = Math.sqrt(x * x + y * y);
             d = z * k;
             distance.value = Math.round(d * 10000) / 10000 + " Km";
             break;
-        case ('2'): //sinus
+        case ('2'): //sinus "Works"
             const RT = 6378.138;
-            d = RT * Math.acos(Math.sin(lamdaA) * Math.sin(lamdaB) + Math.cos(lamdaA) * Math.cos(lamdaB) * Math.cos(gammaB - gammaA));
+            d = RT * Math.acos(Math.sin(gammaA) * Math.sin(gammaB) + Math.cos(gammaA) * Math.cos(gammaB) * Math.cos(lamdaB - lamdaA));
             distance.value = Math.round(d * 10000) / 10000 + " Km";
             break;
-        case ('3'): //Haversine
+        case ('3'): //Haversine "Works"
 
             const k2 = 6378.138;
             x = Math.sin((gammaB - gammaA) / 2) * Math.sin((gammaB - gammaA) / 2);
