@@ -21,18 +21,16 @@ function calculat() {
 
         lamdaA = ConvertDMS_DD(document.getElementById('lamdaA_D').value,
             document.getElementById('lamdaA_M').value,
-            document.getElementById('lamdaA_S').value) * 3.14 / 180
+            document.getElementById('lamdaA_S').value) / 10 * 3.14 / 180
         lamdaB = ConvertDMS_DD(document.getElementById('lamdaB_D').value,
             document.getElementById('lamdaB_M').value,
-            document.getElementById('lamdaB_S').value) * 3.14 / 180
+            document.getElementById('lamdaB_S').value) / 10 * 3.14 / 180
         gammaA = ConvertDMS_DD(document.getElementById('gammaA_D').value,
             document.getElementById('gammaA_M').value,
-            document.getElementById('gammaA_S').value) * 3.14 / 180
+            document.getElementById('gammaA_S').value) / 10 * 3.14 / 180
         gammaB = ConvertDMS_DD(document.getElementById('gammaB_D').value,
             document.getElementById('gammaB_M').value,
-            document.getElementById('gammaB_S').value) * 3.14 / 180
-
-
+            document.getElementById('gammaB_S').value) / 10 * 3.14 / 180
     }
     let d = 0,
         x, y;
